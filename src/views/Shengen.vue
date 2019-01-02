@@ -1,18 +1,13 @@
 <template>
     <div>
-        <h2>
-            {{left}} days left at
-            <el-button @click="sub">{{"<"}}</el-button>
-            <el-date-picker
-                v-model="date"
-                type="date"
-                placeholder="Pick a day">
-            </el-date-picker>
-            <el-button @click="add">></el-button>
-            <el-button @click="today">Today</el-button>
-        </h2>
-        <Trip v-for="trip of $store.getters.sortedTrips" :key="trip.id" :trip="trip"/>
-        <Trip/>
+        <h1>осталось {{left}} дней</h1>
+        <p>въезд <input type="date" v-model="date"></p>
+        <hr>
+        <h2>Поездки</h2>
+        <div id="trips">
+            <Trip v-for="trip of $store.getters.sortedTrips" :key="trip.id" :trip="trip"/>
+            <Trip/>
+        </div> 
     </div>
 </template>
 
@@ -25,7 +20,7 @@ export default {
     components: {Trip},
     data() {
         return {
-            date: new Date()
+            date: "",
         }
     },
     computed: {
@@ -43,16 +38,22 @@ export default {
             return this.calculator.countFrom(this.date);
         }
     },
-    methods: {
-        sub() {
-            this.date = this.moment(this.date).add(-1, "day");
-        },
-        add() {
-            this.date = this.moment(this.date).add(1, "day");
-        },
-        today() {
-            this.date = new Date();
+    watch: {
+        date:  {
+            handler: function (val, oldVal) {
+                if (!val) {
+                    this.date = this.moment().format('YYYY-MM-DD');
+                }
+            },
+            immediate: true
         }
     }
 }
 </script>
+
+<style scoped>
+
+#trips * {
+    padding: 0.5em;
+}
+</style>

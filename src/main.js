@@ -1,17 +1,12 @@
 import Vue from 'vue';
+import dayjs from 'dayjs';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import moment from 'moment';
 
 Vue.config.productionTip = false;
 
-import ElementUI from 'element-ui';
-import locale from 'element-ui/lib/locale/lang/en'
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI, { locale });
-
-Vue.prototype.moment = moment;
+Vue.prototype.moment = dayjs;
 
 new Vue({
   router,

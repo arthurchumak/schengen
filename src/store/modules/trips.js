@@ -12,7 +12,7 @@ export default {
         }
     },
     state: {
-        all: []
+        all: [],
     },
     mutations: {
         addTrip(state, trip) {

@@ -1,4 +1,4 @@
-import {SchengenCalculator} from "./Shengen";
+const {SchengenCalculator} =  require("./Shengen");
 
 describe("ShengenCalculator", () => {
     it("1", () => {
