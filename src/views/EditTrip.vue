@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import uuid from "uuid/v1";
 import Days from "@/components/Days";
 import {SchengenCalculator} from "@/Calculator/Shengen"
 import {mapGetters} from "vuex";
@@ -24,7 +23,7 @@ export default {
     props: ['title'],
     components: {Days},
     created() {
-        this.trip = this.$store.state.trips.all.find(({id}) => id === this.$route.params.id)
+        this.trip = this.sdk.getTrip(this.$route.params.id)
     },
     data() {
         return {
@@ -33,16 +32,12 @@ export default {
     },
     methods: {
         save() {
-            this.$store.commit("removeTrip", this.trip.id);
-            this.$store.commit("addTrip", {
-                id: uuid(),
-                dates: this.trip.dates,
-            })
+            this.sdk.updateTrip(this.trip.id, this.trip.dates);
             this.$router.go(-1);
         },
         remove() {
             if (confirm('This will permanently delete the trip. Continue?')) {
-                this.$store.commit("removeTrip", this.trip.id);
+                this.sdk.removeTrip(this.trip.id);
                 this.$router.go(-1);
             }
         }

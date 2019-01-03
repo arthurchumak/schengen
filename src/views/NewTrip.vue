@@ -35,10 +35,7 @@ export default {
     },
     methods: {
         save() {
-            this.$store.commit("addTrip", {
-                id: uuid(),
-                dates: this.dates,
-            })
+            this.sdk.newTrip(this.dates);
             this.$router.go(-1);
         }
     }
