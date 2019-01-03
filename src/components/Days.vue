@@ -1,5 +1,5 @@
 <template>
-    <div class="separator">{{this.moment(this.end).diff(this.moment(this.start), "days") + (this.end && this.start ? 1 : 0)}} дней</div>
+    <div class="separator">{{this.dayjs(this.end).diff(this.dayjs(this.start), "days") + (this.end && this.start ? 1 : 0)}} дней</div>
 </template>
 
 <script>

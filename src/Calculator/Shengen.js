@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export class SchengenCalculator {
   constructor(period = 180, limit = 90) {
@@ -8,18 +8,18 @@ export class SchengenCalculator {
   }
 
   addByRange(start, end) {
-    const walker = moment(start);
+    let walker = dayjs(start);
 
     while (!walker.isAfter(end)) {
       this.trips.push(walker.clone());
-      walker.add(1, 'day');
+      walker = walker.add(1, 'day');
     }
   }
 
   countFrom(date = new Date()) {
-    const periodStart = moment(date).subtract(this.period, 'days');
+    const periodStart = dayjs(date).subtract(this.period, 'days');
 
-    const periodTripDays = this.trips.filter(trip => trip.isBetween(periodStart, date));
+    const periodTripDays = this.trips.filter(trip => trip.isAfter(periodStart) && trip.isBefore(date));
 
     return this.limit - periodTripDays.length;
   }

@@ -6,7 +6,7 @@ import store from './store';
 
 Vue.config.productionTip = false;
 
-Vue.prototype.moment = dayjs;
+Vue.prototype.dayjs = dayjs;
 
 new Vue({
   router,

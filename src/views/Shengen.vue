@@ -42,7 +42,7 @@ export default {
         date:  {
             handler: function (val, oldVal) {
                 if (!val) {
-                    this.date = this.moment().format('YYYY-MM-DD');
+                    this.date = this.dayjs().format('YYYY-MM-DD');
                 }
             },
             immediate: true
