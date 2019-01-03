@@ -1,12 +1,8 @@
 <template>
     <div class="trip">
-        <input type="date" v-model="dates[0]" :max="dates[1]">
-        <!-- <span>{{dates[0]}}</span> -->
+        <span>{{dates[0]}}</span>
         <Days :start="this.dates[0]" :end="this.dates[1]"/>
-        <!-- <span>{{dates[1]}}</span> -->
-        <input type="date" v-model="dates[1]" :min="dates[0]">
-        <a v-if="trip" size="small" @click="remove">✕</a>
-        <button v-else size="small" @click="add">+</button>
+        <span>{{dates[1]}}</span>
     </div>
 </template>
 
@@ -29,11 +25,6 @@ export default {
             })
             this.dates = [];
         },
-        remove() {
-            if (confirm('This will permanently delete the trip. Continue?')) {
-                this.$store.commit("removeTrip", this.trip.id);
-            }
-        }
     }
 }
 </script>

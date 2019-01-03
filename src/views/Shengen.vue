@@ -1,12 +1,14 @@
 <template>
     <div>
         <h1>осталось {{left}} дней</h1>
-        <p>въезд <input type="date" v-model="date"></p>
+        <span>въезд <input type="date" v-model="date"></span>
         <hr>
         <h2>Поездки</h2>
         <div id="trips">
-            <Trip v-for="trip of $store.getters.sortedTrips" :key="trip.id" :trip="trip"/>
-            <Trip/>
+            <div v-for="trip of $store.getters.sortedTrips" :key="trip.id" @mousedown="$router.push({name: 'EditTrip', params: {id: trip.id}})">
+                <Trip :trip="trip"/>
+            </div>
+            <div @click="$router.push({name: 'NewTrip'})">+</div>
         </div> 
     </div>
 </template>
