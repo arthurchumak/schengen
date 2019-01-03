@@ -1,26 +1,26 @@
-import moment from "moment";
+import moment from 'moment';
 
 export class SchengenCalculator {
-    constructor(period=180, limit=90) {
-        this.period = period;
-        this.limit = limit;
-        this.trips = [];
+  constructor(period = 180, limit = 90) {
+    this.period = period;
+    this.limit = limit;
+    this.trips = [];
+  }
+
+  addByRange(start, end) {
+    const walker = moment(start);
+
+    while (!walker.isAfter(end)) {
+      this.trips.push(walker.clone());
+      walker.add(1, 'day');
     }
+  }
 
-    addByRange(start, end) {
-        let walker = moment(start);
+  countFrom(date = new Date()) {
+    const periodStart = moment(date).subtract(this.period, 'days');
 
-        while (!walker.isAfter(end)){
-            this.trips.push(walker.clone());
-            walker.add(1, "day");
-        }
-    }
+    const periodTripDays = this.trips.filter(trip => trip.isBetween(periodStart, date));
 
-    countFrom(date=new Date()) {
-        const periodStart = moment(date).subtract(this.period, "days");
-
-        const periodTripDays = this.trips.filter(trip => trip.isBetween(periodStart, date));
-
-        return this.limit - periodTripDays.length;
-    }
+    return this.limit - periodTripDays.length;
+  }
 }
