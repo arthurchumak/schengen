@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import { sortBy } from 'lodash';
 
 export default {
   getters: {
@@ -6,7 +6,7 @@ export default {
       return state.all.map(trip => trip.dates);
     },
     sortedTrips(state) {
-      return state.all;
+      return sortBy(state.all, [trip => trip.dates[0]]);
     },
   },
   state: {
