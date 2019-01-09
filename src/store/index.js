@@ -1,17 +1,24 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
-
-import trips from './modules/trips';
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const auth = {
+  state: {
+    user: {}
+  },
+  mutations: {
+    SET_USER(state, payload) {
+      state.user = payload;
+    }
+  }
+};
+
 const store = new Vuex.Store({
   modules: {
-    trips,
+    auth
   },
-  plugins: [createPersistedState()],
-  strict: process.env.NODE_ENV !== 'production',
+  strict: false
 });
 
 export default store;

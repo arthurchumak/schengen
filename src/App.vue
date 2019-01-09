@@ -1,8 +1,36 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div v-if="st">
+      <router-view/>
+    </div>
+
+    <div v-else>Loading</div>
   </div>
 </template>
+
+<script>
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      st: false
+    };
+  },
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    })
+  },
+  watch: {
+    user(user) {
+      this.st = true;
+      if (!this.user) {
+        this.$router.push({ name: "login" });
+      }
+    }
+  }
+};
+</script>
 
 <style>
 #app {
@@ -26,8 +54,10 @@
 [type="date"] {
   box-shadow: none;
   font-size: 22px;
-  font-family: 'Roboto Condensed', sans-serif;
-  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+  font-family: "Roboto Condensed", sans-serif;
+  background: #fff
+    url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+    97% 50% no-repeat;
 }
 [type="date"]::-webkit-inner-spin-button {
   display: none;
