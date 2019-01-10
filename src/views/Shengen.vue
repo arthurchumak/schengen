@@ -9,11 +9,11 @@
     <h2>Поездки</h2>
     <div id="trips">
       <div
-        v-for="(dates, id) of trips"
-        :key="id"
-        @mousedown="$router.push({name: 'EditTrip', params: {id}})"
+        v-for="trip of tripsSorted"
+        :key="trip.id"
+        @mousedown="$router.push({name: 'EditTrip', params: {id: trip.id}})"
       >
-        <Trip :trip="{id, dates}"/>
+        <Trip :trip="trip"/>
       </div>
       <div @click="$router.push({name: 'NewTrip'})">+</div>
     </div>
@@ -24,6 +24,7 @@
 import Trip from "@/components/Trip";
 import { SchengenCalculator } from "@/Calculator/Shengen";
 import { mapGetters } from "vuex";
+import { sortBy } from "lodash";
 
 export default {
   created() {
@@ -39,10 +40,21 @@ export default {
     };
   },
   computed: {
+    dates() {
+      return Object.keys(this.trips).map(id => this.trips[id]);
+    },
+    tripsSorted() {
+      const tripsArray = Object.keys(this.trips).map(id => ({
+        id,
+        dates: this.trips[id]
+      }));
+
+      return sortBy(tripsArray, trip => trip.dates[0]);
+    },
     calculator() {
       const sc = new SchengenCalculator();
 
-      for (let range of []) {
+      for (let range of this.dates) {
         sc.addByRange(...range);
       }
 
