@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>осталось {{left}} дней</h1>
+    <h1 class="title is-1">осталось {{left}} дней</h1>
     <span>
       въезд
       <input type="date" v-model="date">

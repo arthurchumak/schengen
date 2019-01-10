@@ -3,15 +3,14 @@
         <h1>Новая поездка</h1>
 
         <div>
-
-        <input type="date" v-model="dates[0]" :max="dates[1]">
-        <!-- <span>{{dates[0]}}</span> -->
-        <Days :start="this.dates[0]" :end="this.dates[1]"/>
-        <!-- <span>{{dates[1]}}</span> -->
-        <input type="date" v-model="dates[1]" :min="dates[0]">
+            <input type="date" v-model="dates[0]" :max="dates[1]">
+            <!-- <span>{{dates[0]}}</span> -->
+            <Days :start="this.dates[0]" :end="this.dates[1]"/>
+            <!-- <span>{{dates[1]}}</span> -->
+            <input type="date" v-model="dates[1]" :min="dates[0]">
         </div>
 
-        <button :disabled="!dayjs(dates[0]).isBefore(dates[1])" @click="save">Добавить</button>
+        <button class="button is-success" :disabled="!dayjs(dates[0]).isBefore(dates[1])" @click="save">Добавить</button>
     </div>
 </template>
 

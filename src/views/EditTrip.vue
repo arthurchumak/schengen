@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>Редактор</h1>
-
     <div v-if="dates">
       <input type="date" v-model="dates[0]" :max="dates[1]">
       <Days :start="dates[0]" :end="dates[1]"/>
@@ -9,8 +7,14 @@
     </div>
     <div v-else>Not Found</div>
 
-    <button @click="save">Сохранить</button>
-    <button @click="remove">Удалить</button>
+    <div class="field is-grouped">
+      <p class="control">
+        <button class="button is-success" @click="save">Сохранить</button>
+      </p>
+      <p class="control">
+        <button class="button is-danger" @click="remove">Удалить</button>
+      </p>
+    </div>
   </div>
 </template>
 

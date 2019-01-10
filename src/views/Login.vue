@@ -5,7 +5,7 @@
         <p class="control has-icons-left">
           <input class="input" type="email" placeholder="Email" v-model="email">
           <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
+            📧
           </span>
         </p>
       </div>
@@ -13,7 +13,7 @@
         <p class="control has-icons-left">
           <input class="input" type="password" placeholder="Password" v-model="password">
           <span class="icon is-small is-left">
-            <i class="fas fa-lock"></i>
+            🔑
           </span>
         </p>
       </div>

@@ -18,7 +18,6 @@
 
 <style scoped>
 #navbar {
-  font-size: 1.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;

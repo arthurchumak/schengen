@@ -76,6 +76,6 @@ input {
   background-color: #fff;
   padding: 3px 5px;
   box-shadow: none;
-  width: 160px;
+  width: 180px;
 }
 </style>
