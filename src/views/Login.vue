@@ -28,7 +28,9 @@
           <button class="button is-text" @mousedown="reset">Reset password</button>
         </p>
       </div>
-      <p></p>
+      <div v-if="error" class="notification is-danger">
+        {{error.message}}
+      </div>
     </form>
   </div>
 </template>
@@ -38,7 +40,8 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      error: ""
     };
   },
   methods: {
@@ -47,6 +50,9 @@ export default {
         this.$router.push({
           name: "home"
         });
+      })
+      .catch(error => {
+        this.error = error;
       });
     },
     signin() {
@@ -54,10 +60,15 @@ export default {
         this.$router.push({
           name: "home"
         });
+      })
+      .catch(error => {
+        this.error = error;
       });
     },
     reset() {
-      this.auth.resetPass(this.email);
+      this.auth.resetPass(this.email).catch(error => {
+        this.error = error;
+      });
     }
   }
 };
