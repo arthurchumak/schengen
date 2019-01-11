@@ -29,10 +29,14 @@ export default {
     this.sdk.getTrips().on("value", snapshot => {
       this.trips = snapshot.val();
     });
+    this.sdk.getLimit().on("value", snapshot => {
+      this.limit = snapshot.val();
+    });
   },
   components: { Trip },
   data() {
     return {
+      limit: 90,
       date: "",
       trips: {}
     };
@@ -50,7 +54,7 @@ export default {
       return sortBy(tripsArray, trip => trip.dates[0]).reverse();
     },
     calculator() {
-      const sc = new SchengenCalculator();
+      const sc = new SchengenCalculator(180, this.limit);
 
       for (let range of this.dates) {
         sc.addByRange(...range);
