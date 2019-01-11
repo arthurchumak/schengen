@@ -36,6 +36,12 @@ Vue.prototype.sdk = {
     return firebase.auth().currentUser.uid;
   },
   db: firebase.database(),
+  getLimit() {
+    return this.db.ref(`/users/${this.userId()}/limit`);
+  },
+  setLimit(limit) {
+    return this.getLimit().set(limit);
+  },
   getTrips() {
     return this.db.ref(`/users/${this.userId()}/trips`);
   },

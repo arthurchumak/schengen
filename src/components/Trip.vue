@@ -1,5 +1,5 @@
 <template>
-    <div class="trip">
+    <div class="trip box" @mousedown="$router.push({name: 'EditTrip', params: {id: trip.id}})">
         <span>{{dates[0]}}</span>
         <Days :start="this.dates[0]" :end="this.dates[1]"/>
         <span>{{dates[1]}}</span>
@@ -17,20 +17,12 @@ export default {
             dates: this.trip && this.trip.dates || [],
         }
     },
-    methods: {
-        add() {
-            this.$store.commit("addTrip", {
-                id: uuid(),
-                dates: this.dates,
-            })
-            this.dates = [];
-        },
-    }
 }
 </script>
 
 <style scoped>
-.trip:nth-child(even) {
-    background: lightgray;
+.trip {
+    display: flex;
+    justify-content: space-around;
 }
 </style>

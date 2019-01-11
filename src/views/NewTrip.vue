@@ -1,16 +1,18 @@
 <template>
     <div>
-        <h1>Новая поездка</h1>
+        <h2 class="title is-2">Новая поездка</h2>
 
-        <div>
+        <p>
             <input type="date" v-model="dates[0]" :max="dates[1]">
-            <!-- <span>{{dates[0]}}</span> -->
             <Days :start="this.dates[0]" :end="this.dates[1]"/>
-            <!-- <span>{{dates[1]}}</span> -->
             <input type="date" v-model="dates[1]" :min="dates[0]">
-        </div>
+        </p><br>
 
-        <button class="button is-success" :disabled="!dayjs(dates[0]).isBefore(dates[1])" @click="save">Добавить</button>
+        <div class="field is-grouped">
+            <p class="control">    
+                <button class="button is-success" :disabled="!(dates[0] && dates[1])" @click="save">Добавить</button>
+            </p>
+        </div>    
     </div>
 </template>
 

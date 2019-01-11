@@ -1,15 +1,18 @@
 <template>
   <div>
-    <div v-if="dates">
+    <h2 class="title is-2">Редактировать</h2>
+
+    <p v-if="dates">
       <input type="date" v-model="dates[0]" :max="dates[1]">
       <Days :start="dates[0]" :end="dates[1]"/>
       <input type="date" v-model="dates[1]" :min="dates[0]">
-    </div>
+    </p>
     <div v-else>Not Found</div>
+    <br>
 
     <div class="field is-grouped">
       <p class="control">
-        <button class="button is-success" @click="save">Сохранить</button>
+        <button :disabled="!(dates[0] && dates[1])" class="button is-success" @click="save">Сохранить</button>
       </p>
       <p class="control">
         <button class="button is-danger" @click="remove">Удалить</button>

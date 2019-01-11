@@ -1,21 +1,19 @@
 <template>
   <div>
-    <h1 class="title is-1">осталось {{left}} дней</h1>
+    <h1 class="title is-1">Осталось {{left}} дней</h1>
     <span>
       въезд
       <input type="date" v-model="date">
     </span>
     <hr>
-    <h2>Поездки</h2>
+    <h2 class="title is-2">Поездки</h2>
     <div id="trips">
-      <div
+      <div class="box has-text-centered" @click="$router.push({name: 'NewTrip'})">Добавить</div>
+      <Trip
         v-for="trip of tripsSorted"
         :key="trip.id"
-        @mousedown="$router.push({name: 'EditTrip', params: {id: trip.id}})"
-      >
-        <Trip :trip="trip"/>
-      </div>
-      <div @click="$router.push({name: 'NewTrip'})">+</div>
+        :trip="trip"
+      />
     </div>
   </div>
 </template>
@@ -49,7 +47,7 @@ export default {
         dates: this.trips[id]
       }));
 
-      return sortBy(tripsArray, trip => trip.dates[0]);
+      return sortBy(tripsArray, trip => trip.dates[0]).reverse();
     },
     calculator() {
       const sc = new SchengenCalculator();
