@@ -1,6 +1,5 @@
 import Vue from "vue";
 import dayjs from "dayjs";
-import uuid from "uuid/v1";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";

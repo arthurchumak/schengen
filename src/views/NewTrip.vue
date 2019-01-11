@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import uuid from "uuid/v1";
 import Days from "@/components/Days";
 import {SchengenCalculator} from "@/Calculator/Shengen"
 import {mapGetters} from "vuex";

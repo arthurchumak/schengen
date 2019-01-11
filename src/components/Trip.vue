@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import uuid from "uuid/v1";
 import Days from "./Days";
 export default {
     props: ["trip"],
