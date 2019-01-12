@@ -1,0 +1,15 @@
+{
+  "name": "Шенген калькулятор",
+  "short_name": "Шенген калькулятор",
+  "icons": [
+    {
+      "src": "./img/icons/120x120.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#4DBA87"
+}

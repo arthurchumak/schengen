@@ -1,1 +1,8 @@
-{}
+{
+  "apiKey": "AIzaSyCP2GFYF--3j8BEQWr0QItTCjuFXEWM7es",
+  "authDomain": "schengencalc.firebaseapp.com",
+  "databaseURL": "https://schengencalc.firebaseio.com",
+  "projectId": "schengencalc",
+  "storageBucket": "schengencalc.appspot.com",
+  "messagingSenderId": "785127419639"
+}
